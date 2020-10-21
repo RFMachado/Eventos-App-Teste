@@ -12,7 +12,7 @@ interface ServerApi {
     fun getEventsList(): Observable<List<EventPayload>>
 
     @GET("/api/events/{eventId}")
-    fun fetchEventDetail(@Path("eventId") eventId: Float): Completable
+    fun fetchEventDetail(@Path("eventId") eventId: Int): Observable<EventPayload>
 
     @POST("api/checkin")
     fun checkIn(): Completable

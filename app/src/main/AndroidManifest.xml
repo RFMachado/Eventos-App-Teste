@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".feature.events.ui.EventsActivity">
+        <activity android:name="br.com.teste.sicredi.feature.events.ui.EventsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

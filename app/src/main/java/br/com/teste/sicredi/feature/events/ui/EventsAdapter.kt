@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_events.view.*
 
 class EventsAdapter(
     private val items: List<EventsData>,
-    private val listener: (Double) -> Unit
+    private val listener: (Int) -> Unit
 ) : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
 
     inner class ViewHolder(parent: ViewGroup) :

@@ -1,5 +1,8 @@
 package br.com.teste.sicredi.di
 
+import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
+import br.com.teste.sicredi.feature.detail.repository.EventDetailRepository
+import br.com.teste.sicredi.feature.detail.ui.EventDetailViewModel
 import br.com.teste.sicredi.feature.events.domain.EventsSource
 import br.com.teste.sicredi.feature.events.repository.EventsRepository
 import br.com.teste.sicredi.feature.events.ui.EventsViewModel
@@ -16,8 +19,22 @@ val appModule = module {
         )
     }
 
+    single<EventDetailSource> {
+        EventDetailRepository(
+            serverApi = get(),
+            scheduler = Schedulers.io()
+        )
+    }
+
     viewModel {
         EventsViewModel(
+            source = get(),
+            uiScheduler = AndroidSchedulers.mainThread()
+        )
+    }
+
+    viewModel {
+        EventDetailViewModel(
             source = get(),
             uiScheduler = AndroidSchedulers.mainThread()
         )

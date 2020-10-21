@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import br.com.teste.sicredi.R
 import br.com.teste.sicredi.feature.common.ViewState
+import br.com.teste.sicredi.feature.detail.ui.EventDetailActivity
 import br.com.teste.sicredi.feature.events.domain.entity.EventsData
 import kotlinx.android.synthetic.main.activity_events.*
 import timber.log.Timber
@@ -28,7 +29,7 @@ class EventsActivity : AppCompatActivity() {
 
     private fun setupRecycler() = with(recycler) {
         adapter = EventsAdapter(items) { eventID ->
-
+            startActivity(EventDetailActivity.launchIntent(context, eventID))
         }
     }
 
@@ -53,7 +54,7 @@ class EventsActivity : AppCompatActivity() {
     private fun showItems(events: List<EventsData>) {
         items.clear()
         items.addAll(events)
-
+        recycler.adapter?.notifyDataSetChanged()
     }
 
     private fun showLoading() {
