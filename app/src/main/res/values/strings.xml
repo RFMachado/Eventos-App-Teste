@@ -3,6 +3,16 @@
     <string name="base_url">http://5f5a8f24d44d640016169133.mockapi.io</string>
 
     <string name="events">Eventos</string>
-    <string name="price">Valor: R$ %1$s</string>
+    <string name="price">Preço: R$ %1$s</string>
     <string name="date_and_time">Data e hora: %1$s</string>
+
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="description">Descrição</string>
+    <string name="cancel">Cancelar</string>
+    <string name="checkin">Check-In</string>
+    <string name="share">Compartilhar</string>
+    <string name="info_checkin">Informe o seu nome e email para efetuar o check-in</string>
+    <string name="success_check_in">Sucesso ao realizar o Check-In</string>
+    <string name="error_check_in">Erro ao realizar o Check-In tente novamente</string>
 </resources>

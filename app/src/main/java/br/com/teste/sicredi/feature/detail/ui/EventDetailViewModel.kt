@@ -16,11 +16,15 @@ class EventDetailViewModel(
     private val source: EventDetailSource,
     private val uiScheduler: Scheduler
 ): RxViewModel() {
+    private val checkinState = MutableLiveData<ViewState<Boolean>>().apply {
+        value = ViewState.Loading
+    }
     private val state =
         MutableLiveData<ViewState<EventDetailData>>().apply {
             value = ViewState.Loading
         }
 
+    fun getCheckinState() = checkinState.toImmutable()
     fun getState() = state.toImmutable()
 
     fun fetchEventDetail(eventId: Int) {
@@ -31,6 +35,21 @@ class EventDetailViewModel(
             .subscribe(
                 { state.value = it },
                 { Timber.e(it) }
+            )
+    }
+
+    fun sendCheckin(name: String, email: String, eventId: Int) {
+        disposables += source.sendCheckin(name, email, eventId)
+            .startWith { ViewState.Loading }
+            .observeOn(uiScheduler)
+            .subscribe(
+                {
+                    checkinState.postValue(ViewState.Success(true))
+                },
+                {
+                    checkinState.postValue(ViewState.Failed(it))
+                    Timber.e(it)
+                }
             )
     }
 }

@@ -3,9 +3,7 @@ package br.com.teste.sicredi.feature.api
 import br.com.teste.sicredi.feature.events.repository.model.EventPayload
 import io.reactivex.Completable
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ServerApi {
     @GET("/api/events")
@@ -14,6 +12,11 @@ interface ServerApi {
     @GET("/api/events/{eventId}")
     fun fetchEventDetail(@Path("eventId") eventId: Int): Observable<EventPayload>
 
+    @FormUrlEncoded
     @POST("api/checkin")
-    fun checkIn(): Completable
+    fun checkIn(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("eventId") eventId: Int
+    ): Completable
 }

@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import br.com.teste.sicredi.R
 import br.com.teste.sicredi.feature.common.ViewState
 import br.com.teste.sicredi.feature.detail.domain.entity.EventDetailData
+import br.com.teste.sicredi.util.extension.toast
+import br.com.teste.sicredi.util.widget.CheckinBottomSheetDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,7 +23,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
-
 
 class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -41,7 +43,6 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         mMap.uiSettings.setAllGesturesEnabled(false)
     }
 
@@ -78,6 +79,10 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         btnBack.setOnClickListener {
             onBackPressed()
         }
+
+        btnShare.setOnClickListener {
+            share()
+        }
     }
 
     private fun bindObservers() {
@@ -96,6 +101,33 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         })
+
+        viewModel.getCheckinState().observe(this, Observer { state ->
+            when (state) {
+                is ViewState.Loading -> {
+                    showLoading()
+                }
+                is ViewState.Success -> {
+                    hideLoading()
+                    toast(getString(R.string.success_check_in))
+                }
+                is ViewState.Failed -> {
+                    hideLoading()
+                    showError(state.throwable)
+                    toast(getString(R.string.error_check_in))
+                }
+            }
+        })
+    }
+
+    private fun openCheckInDialog() {
+        CheckinBottomSheetDialog().apply {
+            listener = object : CheckinBottomSheetDialog.CheckinListener {
+                override fun onClickCheckin(name: String, email: String) {
+                    viewModel.sendCheckin(name = name, email = email, eventId = eventId)
+                }
+            }
+        }.show(supportFragmentManager)
     }
 
     private fun showData(eventData: EventDetailData) {
@@ -126,5 +158,16 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun hideLoading() {
         progressBar.isVisible = false
+    }
+
+    private fun share() {
+        val title = txtTitle.text.toString()
+        val day = txtDate.text.toString()
+
+        ShareCompat.IntentBuilder.from(this)
+            .setType("text/plain")
+            .setChooserTitle(R.string.share)
+            .setText("$title \n$day")
+            .startChooser()
     }
 }
