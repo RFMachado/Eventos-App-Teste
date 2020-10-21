@@ -14,7 +14,7 @@ class EventPayload {
     lateinit var description: String
 
     @SerializedName("date")
-    lateinit var date: Date
+    lateinit var date: String
 
     @SerializedName("image")
     lateinit var image: String

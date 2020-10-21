@@ -2,14 +2,14 @@ package br.com.teste.sicredi.feature.api
 
 import br.com.teste.sicredi.feature.events.repository.model.EventPayload
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ServerApi {
     @GET("/api/events")
-    fun getEventsList(): Single<List<EventPayload>>
+    fun getEventsList(): Observable<List<EventPayload>>
 
     @GET("/api/events/{eventId}")
     fun fetchEventDetail(@Path("eventId") eventId: Float): Completable

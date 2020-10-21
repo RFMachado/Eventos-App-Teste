@@ -1,11 +1,9 @@
 package br.com.teste.sicredi.feature.events.domain.entity
 
-import java.util.*
-
-class Events(
+data class EventsData(
     val id: Double,
     val title: String,
     val description: String,
-    val date: Date,
+    val dateString: String,
     val image: String
 )

@@ -1,8 +1,8 @@
 package br.com.teste.sicredi.feature.events.domain
 
-import br.com.teste.sicredi.feature.events.domain.entity.Events
-import io.reactivex.Single
+import br.com.teste.sicredi.feature.events.repository.model.EventPayload
+import io.reactivex.Observable
 
 interface EventsSource {
-    fun fetchEventsList() : Single<List<Events>>
+    fun fetchEventsList() : Observable<List<EventPayload>>
 }
