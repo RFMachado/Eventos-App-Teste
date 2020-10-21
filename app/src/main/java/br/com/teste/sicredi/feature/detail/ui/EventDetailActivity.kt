@@ -65,12 +65,20 @@ class EventDetailActivity : AppCompatActivity() {
         })
     }
 
-    fun showData(eventData: EventDetailData) {
+    private fun showData(eventData: EventDetailData) {
+        eventData.run {
+            txtTitle.text = title
+            txtDescription.text = description
+            txtPrice.text = getString(R.string.price, price)
+            txtDate.text = getString(R.string.date_and_time, dateString)
+        }
+
         Glide.with(this)
             .load(eventData.image)
             .error(R.drawable.placeholder)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(imgEvent)
+
     }
 
     private fun showError(throwable: Throwable) {

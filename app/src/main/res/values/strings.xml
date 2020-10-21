@@ -3,4 +3,6 @@
     <string name="base_url">http://5f5a8f24d44d640016169133.mockapi.io</string>
 
     <string name="events">Eventos</string>
+    <string name="price">Valor: R$ %1$s</string>
+    <string name="date_and_time">Data e hora: %1$s</string>
 </resources>

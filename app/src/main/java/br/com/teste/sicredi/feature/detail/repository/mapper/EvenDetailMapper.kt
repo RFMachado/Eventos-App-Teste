@@ -13,7 +13,7 @@ object EvenDetailMapper {
                 description = description,
                 dateString = date.formatDate(),
                 image = image,
-                price = price,
+                price = price.toString(),
                 lat = lat,
                 lng = lng
             )

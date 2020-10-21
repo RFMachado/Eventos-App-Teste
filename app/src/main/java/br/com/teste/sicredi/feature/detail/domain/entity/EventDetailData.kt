@@ -6,7 +6,7 @@ data class EventDetailData(
     val description: String,
     val dateString: String,
     val image: String,
-    val price: Double,
+    val price: String,
     val lng: Double,
     val lat: Double
 )
