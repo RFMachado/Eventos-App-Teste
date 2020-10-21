@@ -20,9 +20,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import kotlin.math.abs
 
 class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -87,6 +89,11 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         btnCheckIn.setOnClickListener {
             openCheckInDialog()
         }
+
+        appBar.addOnOffsetChangedListener(
+            AppBarLayout.OnOffsetChangedListener { appBar, verticalOffset ->
+                btnCheckIn.isVisible = abs(verticalOffset) < appBar.height
+            })
     }
 
     private fun bindObservers() {

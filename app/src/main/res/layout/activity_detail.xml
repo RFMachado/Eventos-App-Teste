@@ -81,18 +81,14 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        <androidx.appcompat.widget.AppCompatButton
            android:id="@+id/btnCheckIn"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="@string/checkin"
-            android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimaryDark"
-            app:tint="@color/colorPrimaryDark"
-            android:textAlignment="center"
             android:gravity="center"
-            style="@style/MaterialTheme"
+            android:background="@drawable/bg_button_rounded"
             app:layout_anchor="@id/appBar"
             app:layout_anchorGravity="center|bottom"/>
 
