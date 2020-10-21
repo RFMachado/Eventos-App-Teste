@@ -83,6 +83,10 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         btnShare.setOnClickListener {
             share()
         }
+
+        btnCheckIn.setOnClickListener {
+            openCheckInDialog()
+        }
     }
 
     private fun bindObservers() {
