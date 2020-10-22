@@ -1,11 +1,16 @@
 package br.com.teste.sicredi.feature
 
+import br.com.teste.sicredi.feature.detail.domain.entity.CheckIn
 import br.com.teste.sicredi.feature.detail.domain.entity.EventDetailData
 import br.com.teste.sicredi.feature.events.domain.entity.EventData
 
 object StubFactory {
 
     const val EVENT_ID = 1
+    const val SUCCESS_CODE = 200
+    const val ERROR_CODE = 400
+    const val NAME = "Felipe Smith"
+    const val EMAIL = "felipesmith@gmail.com"
 
     fun stubEvent() = EventData(
         id = 1,
@@ -26,5 +31,7 @@ object StubFactory {
         lat = -30.0392981
     )
 
-    fun stubEventsList() = listOf<EventData>(stubEvent(), stubEvent(), stubEvent())
+    fun stubEventsList() = listOf(stubEvent(), stubEvent(), stubEvent())
+    fun stubCheckIn() = CheckIn(SUCCESS_CODE)
+    fun stubCheckInError() = CheckIn(ERROR_CODE)
 }

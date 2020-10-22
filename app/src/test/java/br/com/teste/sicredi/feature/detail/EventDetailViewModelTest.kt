@@ -2,7 +2,9 @@ package br.com.teste.sicredi.feature.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.teste.sicredi.feature.StubFactory
+import br.com.teste.sicredi.feature.StubFactory.EMAIL
 import br.com.teste.sicredi.feature.StubFactory.EVENT_ID
+import br.com.teste.sicredi.feature.StubFactory.NAME
 import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
 import br.com.teste.sicredi.feature.detail.ui.EventDetailViewModel
 import com.nhaarman.mockitokotlin2.mock
@@ -30,6 +32,19 @@ class EventDetailViewModelTest {
             source = eventDetailSource,
             uiScheduler = Schedulers.trampoline()
         )
+    }
+
+    @Test
+    fun `should emit the success check in`() {
+        val provided = StubFactory.stubCheckIn()
+
+        whenever(
+            eventDetailSource.sendCheckin(
+                name = NAME,
+                email = EMAIL,
+                eventId = EVENT_ID
+            )
+        ).thenReturn(Observable.just(provided))
     }
 
     @Test

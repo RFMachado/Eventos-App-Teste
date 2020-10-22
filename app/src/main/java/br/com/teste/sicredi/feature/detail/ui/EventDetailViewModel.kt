@@ -27,7 +27,7 @@ class EventDetailViewModel(
         }
 
     fun getCheckinState() = checkinState.toImmutable()
-    fun getState() = eventDetailstate.toImmutable()
+    fun getEvendDetailState() = eventDetailstate.toImmutable()
 
     fun fetchEventDetail(eventId: Int) {
         disposables += source.fetchEventDetail(eventId)
@@ -41,7 +41,6 @@ class EventDetailViewModel(
 
     fun sendCheckin(name: String, email: String, eventId: Int) {
         disposables += source.sendCheckin(name, email, eventId)
-            .map { EvenDetailMapper.mapCheckIn(it) }
             .compose(StateMachine())
             .observeOn(uiScheduler)
             .subscribe(

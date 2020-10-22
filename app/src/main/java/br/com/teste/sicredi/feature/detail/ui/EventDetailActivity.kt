@@ -102,7 +102,7 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun bindObservers() {
-        viewModel.getState().observe(this, Observer { state ->
+        viewModel.getEvendDetailState().observe(this, Observer { state ->
             when (state) {
                 is ViewState.Loading -> {
                     showLoading()
