@@ -5,6 +5,7 @@ import br.com.teste.sicredi.feature.common.RxViewModel
 import br.com.teste.sicredi.feature.common.StateMachine
 import br.com.teste.sicredi.feature.common.ViewState
 import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
+import br.com.teste.sicredi.feature.detail.domain.entity.CheckIn
 import br.com.teste.sicredi.feature.detail.domain.entity.EventDetailData
 import br.com.teste.sicredi.feature.detail.repository.mapper.EvenDetailMapper
 import br.com.teste.sicredi.util.extension.toImmutable
@@ -16,7 +17,7 @@ class EventDetailViewModel(
     private val source: EventDetailSource,
     private val uiScheduler: Scheduler
 ): RxViewModel() {
-    private val checkinState = MutableLiveData<ViewState<Boolean>>().apply {
+    private val checkinState = MutableLiveData<ViewState<CheckIn>>().apply {
         value = ViewState.Loading
     }
     private val state =
@@ -29,7 +30,7 @@ class EventDetailViewModel(
 
     fun fetchEventDetail(eventId: Int) {
         disposables += source.fetchEventDetail(eventId)
-            .map { EvenDetailMapper.map(it) }
+            .map { EvenDetailMapper.mapDetail(it) }
             .compose(StateMachine())
             .observeOn(uiScheduler)
             .subscribe(
@@ -40,11 +41,19 @@ class EventDetailViewModel(
 
     fun sendCheckin(name: String, email: String, eventId: Int) {
         disposables += source.sendCheckin(name, email, eventId)
-            .startWith { ViewState.Loading }
+            .map { EvenDetailMapper.mapCheckIn(it) }
+            .compose(StateMachine())
             .observeOn(uiScheduler)
             .subscribe(
-                {
-                    checkinState.postValue(ViewState.Success(true))
+                { result ->
+                    if(result is ViewState.Success) {
+                        if(result.data.code == "200")
+                            checkinState.postValue(result)
+                        else
+                            checkinState.postValue(
+                                ViewState.Failed(Throwable("code error ${result.data.code}"))
+                            )
+                    }
                 },
                 {
                     checkinState.postValue(ViewState.Failed(it))

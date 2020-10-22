@@ -88,7 +88,7 @@
             android:text="@string/checkin"
             android:textColor="@color/colorPrimary"
             android:gravity="center"
-            android:background="@drawable/bg_button_rounded"
+            android:background="@drawable/bg_check_in"
             app:layout_anchor="@id/appBar"
             app:layout_anchorGravity="center|bottom"/>
 

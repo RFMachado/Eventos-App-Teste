@@ -2,8 +2,8 @@ package br.com.teste.sicredi.feature.detail.repository
 
 import br.com.teste.sicredi.feature.api.ServerApi
 import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
+import br.com.teste.sicredi.feature.detail.repository.model.CheckInResponse
 import br.com.teste.sicredi.feature.events.repository.model.EventPayload
-import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 
@@ -16,7 +16,7 @@ class EventDetailRepository(
             .subscribeOn(scheduler)
     }
 
-    override fun sendCheckin(name: String, email: String, eventId: Int): Completable {
+    override fun sendCheckin(name: String, email: String, eventId: Int): Observable<CheckInResponse> {
         return serverApi.checkIn(name = name, email = email, eventId = eventId)
             .subscribeOn(scheduler)
     }

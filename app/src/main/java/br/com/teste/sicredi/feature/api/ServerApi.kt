@@ -1,7 +1,7 @@
 package br.com.teste.sicredi.feature.api
 
+import br.com.teste.sicredi.feature.detail.repository.model.CheckInResponse
 import br.com.teste.sicredi.feature.events.repository.model.EventPayload
-import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -18,5 +18,5 @@ interface ServerApi {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("eventId") eventId: Int
-    ): Completable
+    ): Observable<CheckInResponse>
 }

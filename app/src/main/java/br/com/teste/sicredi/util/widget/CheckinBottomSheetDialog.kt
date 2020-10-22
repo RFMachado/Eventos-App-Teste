@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import br.com.teste.sicredi.R
+import br.com.teste.sicredi.util.extension.toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_checkin_view.*
 
@@ -34,10 +35,16 @@ class CheckinBottomSheetDialog : BottomSheetDialogFragment() {
         }
 
         btnCheckIn.setOnClickListener {
-            listener?.onClickCheckin(
-                name = edtName.text.toString(),
-                email = edtName.text.toString()
-            )
+            if (edtName.text.isNullOrEmpty() ||  edtEmail.text.isNullOrEmpty())
+                context?.toast(getString(R.string.error_check_in_fields))
+            else {
+                listener?.onClickCheckin(
+                    name = edtName.text.toString(),
+                    email = edtEmail.text.toString()
+                )
+
+                dismiss()
+            }
         }
     }
 

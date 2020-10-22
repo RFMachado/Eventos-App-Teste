@@ -1,20 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:state_pressed="true">
-        <shape android:shape="rectangle">
-            <solid android:color="#35850E" />
-        </shape>
-    </item>
-
-    <item android:state_focused="true">
-        <shape android:shape="rectangle">
-            <solid android:color="#35850E" />
-        </shape>
-    </item>
-
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="#3fa110" />
-        </shape>
-    </item>
+    <!--  Non focused states
+     -->
+    <item android:state_focused="false" android:state_selected="false" android:state_pressed="false" android:drawable="@drawable/bg_button_rounded_unfocused" />
+    <item android:state_focused="false" android:state_selected="true" android:state_pressed="false" android:drawable="@drawable/bg_button_rounded_unfocused" />
+    <!--  Focused states
+     -->
+    <item android:state_focused="true" android:state_selected="false" android:state_pressed="false" android:drawable="@drawable/bg_button_rounded_focused" />
+    <item android:state_focused="true" android:state_selected="true" android:state_pressed="false" android:drawable="@drawable/bg_button_rounded_focused" />
+    <!--  Pressed
+     -->
+    <item android:state_pressed="true" android:drawable="@drawable/bg_button_rounded_focused" />
 </selector>
