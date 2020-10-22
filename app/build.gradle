@@ -18,6 +18,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        nmapp {
+            keyAlias 'sicredi'
+            keyPassword 'sicredi'
+            storePassword 'sicredi'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -50,6 +65,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.7.0"
@@ -76,6 +93,11 @@ dependencies {
 
     //multidex
     implementation 'com.android.support:multidex:1.0.3'
+
+    //mockito
+    testImplementation "org.mockito:mockito-core:2.23.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
 }
 
 androidExtensions {

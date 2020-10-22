@@ -8,14 +8,14 @@ import androidx.lifecycle.Observer
 import br.com.teste.sicredi.R
 import br.com.teste.sicredi.feature.common.ViewState
 import br.com.teste.sicredi.feature.detail.ui.EventDetailActivity
-import br.com.teste.sicredi.feature.events.domain.entity.EventsData
+import br.com.teste.sicredi.feature.events.domain.entity.EventData
 import kotlinx.android.synthetic.main.activity_events.*
 import timber.log.Timber
 
 class EventsActivity : AppCompatActivity() {
 
     private val viewModel: EventsViewModel by viewModel()
-    private val items = ArrayList<EventsData>()
+    private val items = ArrayList<EventData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,7 @@ class EventsActivity : AppCompatActivity() {
         })
     }
 
-    private fun showItems(events: List<EventsData>) {
+    private fun showItems(events: List<EventData>) {
         items.clear()
         items.addAll(events)
         recycler.adapter?.notifyDataSetChanged()
