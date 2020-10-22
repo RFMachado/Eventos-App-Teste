@@ -3,6 +3,7 @@ package br.com.teste.sicredi.feature.events
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.teste.sicredi.feature.api.ServerApi
 import br.com.teste.sicredi.feature.events.repository.EventsRepository
+import br.com.teste.sicredi.feature.util.FilesFromTestResources.getJson
 import io.reactivex.schedulers.Schedulers
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -49,6 +50,7 @@ class EventsRepositoryTest {
         server.enqueue(
             MockResponse()
                 .setResponseCode(200)
+                .setBody(getJson("events/eventData"))
         )
 
         repository.fetchEventsList()
