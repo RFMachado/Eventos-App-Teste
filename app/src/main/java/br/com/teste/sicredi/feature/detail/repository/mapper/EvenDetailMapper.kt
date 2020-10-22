@@ -22,5 +22,5 @@ object EvenDetailMapper {
         }
     }
 
-    fun mapCheckIn(payload: CheckInResponse) = CheckIn(payload.code)
+    fun mapCheckIn(payload: CheckInResponse) = CheckIn(payload.code.toInt())
 }

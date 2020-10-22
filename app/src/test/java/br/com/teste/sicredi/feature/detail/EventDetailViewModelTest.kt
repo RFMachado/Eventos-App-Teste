@@ -33,14 +33,14 @@ class EventDetailViewModelTest {
     }
 
     @Test
-    fun `should emit the correct event items`() {
+    fun `should emit the correct event detail`() {
         val provided = StubFactory.stubEventDetail()
 
         whenever(eventDetailSource.fetchEventDetail(EVENT_ID)).thenReturn(Observable.just(provided))
     }
 
     @Test
-    fun `check events error`() {
+    fun `check event detail error`() {
         whenever(eventDetailSource.fetchEventDetail(EVENT_ID))
             .thenReturn(Observable.error(httpException))
     }
