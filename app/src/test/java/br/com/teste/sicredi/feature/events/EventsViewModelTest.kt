@@ -11,11 +11,13 @@ import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.HttpException
 
 class EventsViewModelTest {
     lateinit var viewModel: EventsViewModel
 
     private val eventsSource: EventsSource = mock()
+    private val httpException: HttpException = mock()
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -34,6 +36,11 @@ class EventsViewModelTest {
         val provided = StubFactory.stubEventsList()
 
         whenever(eventsSource.fetchEventsList()).thenReturn(Observable.just(provided))
+    }
+
+    @Test
+    fun `check events error`() {
+        whenever(eventsSource.fetchEventsList()).thenReturn(Observable.error(httpException))
     }
 
 }

@@ -30,7 +30,6 @@ class EventDetailViewModel(
 
     fun fetchEventDetail(eventId: Int) {
         disposables += source.fetchEventDetail(eventId)
-            .map { EvenDetailMapper.mapDetail(it) }
             .compose(StateMachine())
             .observeOn(uiScheduler)
             .subscribe(
