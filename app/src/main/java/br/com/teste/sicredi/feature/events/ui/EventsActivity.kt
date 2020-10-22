@@ -23,6 +23,7 @@ class EventsActivity : AppCompatActivity() {
 
         viewModel.fetchEvents()
 
+        bindListener()
         bindObserver()
         setupRecycler()
     }
@@ -30,6 +31,13 @@ class EventsActivity : AppCompatActivity() {
     private fun setupRecycler() = with(recycler) {
         adapter = EventsAdapter(items) { eventID ->
             startActivity(EventDetailActivity.launchIntent(context, eventID))
+        }
+    }
+
+    private fun bindListener() {
+        btnTryAgain.setOnClickListener {
+            viewModel.fetchEvents()
+            layoutError.isVisible = false
         }
     }
 
@@ -67,6 +75,7 @@ class EventsActivity : AppCompatActivity() {
 
     private fun showError(throwable: Throwable) {
         Timber.e(throwable)
+        layoutError.isVisible = true
     }
 
 }

@@ -12,6 +12,7 @@
     <string name="cancel">Cancelar</string>
     <string name="checkin">Check-In</string>
     <string name="share">Compartilhar</string>
+    <string name="try_again">Tente Novamente</string>
     <string name="info_checkin">Informe o seu nome e email \npara efetuar o check-in</string>
     <string name="success_check_in">Sucesso ao realizar o Check-In</string>
     <string name="error_check_in">Erro ao realizar o Check-In tente novamente</string>
