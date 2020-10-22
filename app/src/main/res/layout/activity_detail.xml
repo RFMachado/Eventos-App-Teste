@@ -81,7 +81,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <br.com.teste.sicredi.util.widget.CheckInButton
            android:id="@+id/btnCheckIn"
             android:layout_width="100dp"
             android:layout_height="50dp"

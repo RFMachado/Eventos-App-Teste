@@ -21,8 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -32,7 +30,6 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private val viewModel: EventDetailViewModel by viewModel()
-    private var checkinDialog: BottomSheetDialogFragment? = null
 
     private val eventId by lazy { intent.getIntExtra(EXTRA_EVENT_ID, 0) }
 
@@ -96,8 +93,12 @@ class EventDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         appBar.addOnOffsetChangedListener(
             AppBarLayout.OnOffsetChangedListener { appBar, verticalOffset ->
-                btnCheckIn.isVisible = abs(verticalOffset) < appBar.height
-            })
+                if (abs(verticalOffset) > appBar.height/2)
+                    btnCheckIn.scaleDown()
+                else
+                    btnCheckIn.scaleUp()
+            }
+        )
     }
 
     private fun bindObservers() {
