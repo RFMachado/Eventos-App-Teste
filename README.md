@@ -13,5 +13,6 @@ e fazer check in no evento.
 # Telas
 
 * Tela principal onde são listados todos os eventos
-![alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/home.png)
+
+![Alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/home.png)
 
