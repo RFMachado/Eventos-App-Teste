@@ -3,6 +3,7 @@ package br.com.teste.sicredi.feature.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.teste.sicredi.feature.StubFactory
 import br.com.teste.sicredi.feature.StubFactory.EMAIL
+import br.com.teste.sicredi.feature.StubFactory.ERROR_CODE
 import br.com.teste.sicredi.feature.StubFactory.EVENT_ID
 import br.com.teste.sicredi.feature.StubFactory.NAME
 import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
@@ -15,6 +16,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.HttpException
+import kotlin.test.assertNotEquals
 
 class EventDetailViewModelTest {
 
@@ -45,6 +47,17 @@ class EventDetailViewModelTest {
                 eventId = EVENT_ID
             )
         ).thenReturn(Observable.just(provided))
+    }
+
+    @Test
+    fun `should emit code error check in`() {
+        whenever(
+            eventDetailSource.sendCheckin(
+                name = NAME,
+                email = EMAIL,
+                eventId = EVENT_ID
+            )
+        ).thenReturn(Observable.error(Throwable("Error code $ERROR_CODE")))
     }
 
     @Test

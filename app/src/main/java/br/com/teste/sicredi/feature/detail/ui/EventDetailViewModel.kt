@@ -7,7 +7,6 @@ import br.com.teste.sicredi.feature.common.ViewState
 import br.com.teste.sicredi.feature.detail.domain.EventDetailSource
 import br.com.teste.sicredi.feature.detail.domain.entity.CheckIn
 import br.com.teste.sicredi.feature.detail.domain.entity.EventDetailData
-import br.com.teste.sicredi.feature.detail.repository.mapper.EvenDetailMapper
 import br.com.teste.sicredi.util.extension.toImmutable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.plusAssign
@@ -41,18 +40,15 @@ class EventDetailViewModel(
 
     fun sendCheckin(name: String, email: String, eventId: Int) {
         disposables += source.sendCheckin(name, email, eventId)
+            .doOnNext {  checkIn ->
+                if(checkIn.code != 200)
+                    Throwable("Error code ${checkIn.code}")
+            }
             .compose(StateMachine())
             .observeOn(uiScheduler)
             .subscribe(
-                { result ->
-                    if(result is ViewState.Success) {
-                        if(result.data.code == 200)
-                            checkinState.postValue(result)
-                        else
-                            checkinState.postValue(
-                                ViewState.Failed(Throwable("code error ${result.data.code}"))
-                            )
-                    }
+                {
+                    checkinState.postValue(it)
                 },
                 {
                     checkinState.postValue(ViewState.Failed(it))
