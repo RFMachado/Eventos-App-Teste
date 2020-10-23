@@ -35,17 +35,27 @@ class CheckinBottomSheetDialog : BottomSheetDialogFragment() {
         }
 
         btnCheckIn.setOnClickListener {
-            if (edtName.text.isNullOrEmpty() ||  edtEmail.text.isNullOrEmpty())
-                context?.toast(getString(R.string.error_check_in_fields))
-            else {
-                listener?.onClickCheckin(
-                    name = edtName.text.toString(),
-                    email = edtEmail.text.toString()
-                )
+            when {
+                isNotEmailValid() -> {
+                    edtEmail.error = "Email Invalido"
+                }
+                edtName.text.isNullOrEmpty() ||  edtEmail.text.isNullOrEmpty() -> {
+                    context?.toast(getString(R.string.error_check_in_fields))
+                }
+                else -> {
+                    listener?.onClickCheckin(
+                        name = edtName.text.toString(),
+                        email = edtEmail.text.toString()
+                    )
 
-                dismiss()
+                    dismiss()
+                }
             }
         }
+    }
+
+    private fun isNotEmailValid(): Boolean {
+        return !android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.text.toString()).matches()
     }
 
     fun show(manager: FragmentManager) {
