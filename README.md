@@ -9,3 +9,8 @@ e fazer check in no evento.
 * [RXJava](https://github.com/ReactiveX/RxJava)
 * [Glide](https://github.com/bumptech/glide) para carregamente de imagens
 * [Retrofit](https://square.github.io/retrofit/)
+
+# Telas
+
+* Tela principal onde são listados todos os eventos
+![alt text](https://github.com/RFMachado/SicrediTeste/blob/master/home.jpg?raw=true)
