@@ -16,3 +16,12 @@ e fazer check in no evento.
 
 ![Alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/home.png)
 
+
+* Tela de detalhe de evento onde é possível verificar a localização, compartilhar e fazer check-in 
+
+![Alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/detail.png)
+
+
+* Opção para cadastrar nome e email para fazer o check-in no evento
+
+![Alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/checkin.png)
