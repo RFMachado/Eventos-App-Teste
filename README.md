@@ -25,3 +25,7 @@ e fazer check in no evento.
 * Opção para cadastrar nome e email para fazer o check-in no evento
 
 ![Alt text](https://github.com/RFMachado/SicrediTeste/blob/master/app/src/main/res/raw/checkin.png)
+
+
+# Contato
+<rfmachado91@gmail.com>
