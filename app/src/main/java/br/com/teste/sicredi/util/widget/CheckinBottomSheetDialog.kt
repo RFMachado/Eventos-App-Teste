@@ -1,6 +1,7 @@
 package br.com.teste.sicredi.util.widget
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ class CheckinBottomSheetDialog : BottomSheetDialogFragment() {
         btnCheckIn.setOnClickListener {
             when {
                 isNotEmailValid() -> {
-                    edtEmail.error = "Email Invalido"
+                    edtEmail.error = getString(R.string.error_invalid_email)
                 }
                 edtName.text.isNullOrEmpty() ||  edtEmail.text.isNullOrEmpty() -> {
                     context?.toast(getString(R.string.error_check_in_fields))
@@ -55,7 +56,7 @@ class CheckinBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     private fun isNotEmailValid(): Boolean {
-        return !android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.text.toString()).matches()
+        return !Patterns.EMAIL_ADDRESS.matcher(edtEmail.text.toString()).matches()
     }
 
     fun show(manager: FragmentManager) {
