@@ -15,7 +15,7 @@ class EventsViewModel(
     private val source: EventsSource,
     private val uiScheduler: Scheduler
 ): RxViewModel() {
-    private val state =
+    val state =
         MutableLiveData<ViewState<List<EventData>>>().apply {
         value = ViewState.Loading
     }
