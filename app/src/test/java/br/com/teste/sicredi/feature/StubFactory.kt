@@ -33,4 +33,5 @@ object StubFactory {
 
     fun stubEventsList() = listOf(stubEvent(), stubEvent(), stubEvent())
     fun stubCheckIn() = CheckIn(SUCCESS_CODE)
+    fun stubCheckInError() = CheckIn(ERROR_CODE)
 }

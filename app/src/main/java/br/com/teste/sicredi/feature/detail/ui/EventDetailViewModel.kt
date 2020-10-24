@@ -16,11 +16,11 @@ class EventDetailViewModel(
     private val source: EventDetailSource,
     private val uiScheduler: Scheduler
 ): RxViewModel() {
-    private val checkinState =
+    val checkinState =
         MutableLiveData<ViewState<CheckIn>>().apply {
             value = ViewState.Loading
         }
-    private val eventDetailstate =
+    val eventDetailstate =
         MutableLiveData<ViewState<EventDetailData>>().apply {
             value = ViewState.Loading
         }
